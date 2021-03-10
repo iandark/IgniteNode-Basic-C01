@@ -40,13 +40,13 @@ const validateDate = function (date) {
 app.post('/account', (req, res)=>{
     const { cpf, name } = req.body;
 
-    const id = uuidV4();
-
     const customerAlreadyExist = customers.some(customer=> customer.cpf  === cpf)
 
     if(customerAlreadyExist) {
         return res.json({message: "There's a customer already in database with this CPF"}).status(401);
     }
+
+    const id = uuidV4();
 
     customers.push({
         id,
