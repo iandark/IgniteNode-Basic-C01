@@ -106,7 +106,7 @@ app.get('/statement/date', (req, res)=>{
     const { statement } = req.customer;
 
     if(!validateDate(date)) {
-        return res.json({ message: "Invalid date"}).status(401);
+        return res.status(401).json({ message: "Invalid date"});
     }
 
     const arrDate = date.split('/');
@@ -141,7 +141,7 @@ app.delete('/account', (req, res)=>{
     const { customer } = req;
 
     customers.splice(customers.indexOf(customer), 1);
-    res.json(customers).status(200);
+    res.status(200).json(customers);
 });
 
 app.get('/balance', (req, res)=>{
