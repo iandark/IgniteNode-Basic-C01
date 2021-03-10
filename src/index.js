@@ -11,7 +11,7 @@ const accountByCPF = function (req, res, next) {
     const customer = customers.find(customer => customer.cpf === cpf);
 
     if(!customer) {
-        return res.json({ message: "Customer don't exist"}).status(400);
+        return res.status(400).json({ message: "Customer don't exist"});
     }
 
     req.customer = customer;
@@ -43,7 +43,7 @@ app.post('/account', (req, res)=>{
     const customerAlreadyExist = customers.some(customer=> customer.cpf  === cpf)
 
     if(customerAlreadyExist) {
-        return res.json({message: "There's a customer already in database with this CPF"}).status(401);
+        return res.status(401).json({message: "There's a customer already in database with this CPF"});
     }
 
     const id = uuidV4();
@@ -87,7 +87,7 @@ app.post('/withdraw', (req, res)=>{
     const balance = getBalance(req.customer.statement);
 
     if(amount>balance) {
-        return res.json({ message: "Insufficient founds"}).status(401);
+        return res.status(401).json({ message: "Insufficient founds"});
     }
 
     const statement = {
