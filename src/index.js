@@ -144,6 +144,14 @@ app.delete('/account', (req, res)=>{
     res.json(customers).status(200);
 });
 
+app.get('/balance', (req, res)=>{
+    const { customer } = req;
+
+    const balance = getBalance(customer.statement);
+
+    res.json(balance);
+});
+
 app.listen(3333, ()=>{
     console.log('Listening on port 3333');
 });
